@@ -10,9 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.amitmutreja.recyclerviewexample.R;
-import com.example.amitmutreja.recyclerviewexample.adapters.CustomLearnAdapter;
-import com.example.amitmutreja.recyclerviewexample.controllers.implementors.LearnController;
-import com.example.amitmutreja.recyclerviewexample.controllers.interfaces.ILearnController;
+import com.example.amitmutreja.recyclerviewexample.adapters.MovieAdapter;
+import com.example.amitmutreja.recyclerviewexample.controllers.implementors.MovieController;
+import com.example.amitmutreja.recyclerviewexample.controllers.interfaces.IMovieController;
+import com.example.amitmutreja.recyclerviewexample.models.Movie;
+
+import java.util.List;
 
 
 /**
@@ -23,12 +26,12 @@ import com.example.amitmutreja.recyclerviewexample.controllers.interfaces.ILearn
 public class MovieFragment extends Fragment {
 
     //region member variables
-    private ILearnController mLearnController;
+    private IMovieController mLearnController;
     private RecyclerView mRecyclerView;
-    private CustomLearnAdapter mMovieAdapter;
+    private MovieAdapter mMovieAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     RecyclerView.ItemDecoration mItemDecoration;
-    private String[] mDataset;
+    private List<Movie> mDataset;
     //endregion
 
     public MovieFragment() {
@@ -44,7 +47,7 @@ public class MovieFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         // ask learnController to initialize the dataSet for you
-        mLearnController = new LearnController();
+        mLearnController = new MovieController();
         mDataset = mLearnController.getDataSet();
     }
 
@@ -59,9 +62,9 @@ public class MovieFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_learn, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_movie, container, false);
 
-        // BEGIN_INCLUDE(initializeRecyclerView)
+
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.learn_recycler_view);
 
         // LinearLayoutManager is used here, this will layout the elements in a similar fashion
@@ -70,8 +73,8 @@ public class MovieFragment extends Fragment {
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mMovieAdapter = new CustomLearnAdapter(mDataset);
-        // Set CustomLearnAdapter as the adapter for RecyclerView.
+        mMovieAdapter = new MovieAdapter(mDataset);
+        // Set MovieAdapter as the adapter for RecyclerView.
         mRecyclerView.setAdapter(mMovieAdapter);
 
         mItemDecoration = new DividerItemDecoration(this.getContext(), DividerItemDecoration.VERTICAL);
@@ -79,8 +82,7 @@ public class MovieFragment extends Fragment {
 
         mMovieAdapter.loadData();
 
-        mMovieAdapter.addData("new_string_will_come_here_after_it_gets_notified");
-        // END_INCLUDE(initializeRecyclerView)
+//        mMovieAdapter.addData("new_string_will_come_here_after_it_gets_notified");
 
         return rootView;
     }

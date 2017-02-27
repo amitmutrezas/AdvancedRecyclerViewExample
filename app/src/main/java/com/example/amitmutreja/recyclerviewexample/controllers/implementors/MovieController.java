@@ -3,6 +3,7 @@ package com.example.amitmutreja.recyclerviewexample.controllers.implementors;
 import com.example.amitmutreja.recyclerviewexample.controllers.interfaces.IMovieController;
 import com.example.amitmutreja.recyclerviewexample.models.Movie;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,13 +30,15 @@ public class MovieController implements IMovieController {
     //region Overridden methods
     @Override
     public List<Movie> getDataSet() {
-        prepareMovieData();
+        movieList = prepareMovieData();
         return movieList;
     }
     //endregion
 
     //region private methods
-    private void prepareMovieData() {
+    private List<Movie> prepareMovieData() {
+        List<Movie> movieList = new ArrayList<>();
+
         Movie movie = new Movie("Mad Max: Fury Road", "Action & Adventure", "2015");
         movieList.add(movie);
 
@@ -83,6 +86,8 @@ public class MovieController implements IMovieController {
 
         movie = new Movie("Guardians of the Galaxy", "Science Fiction & Fantasy", "2014");
         movieList.add(movie);
+
+        return movieList;
     }
     //endregion
 }

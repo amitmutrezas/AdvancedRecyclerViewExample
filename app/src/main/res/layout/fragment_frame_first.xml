@@ -2,16 +2,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:orientation="horizontal"
-              >
+              android:orientation="vertical"
+              android:baselineAligned="false">
+
+    <TextView
+        android:layout_weight="1"
+
+        android:layout_marginLeft="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="This is the first fragment"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"/>
 
     <Button
-        android:text="Button"
+        android:id="@+id/movie_button"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="50dp"
+        android:text="Movies"
+        android:layout_weight="2"
         android:layout_width="283dp"
         android:layout_height="match_parent"
-        android:id="@+id/button"
         android:elevation="11dp"
-        style="@android:style/Widget.Button"/>
+        style="@android:style/Widget.Button"
+        android:onClick="startMovieFragment"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"/>
 
 
 </LinearLayout>

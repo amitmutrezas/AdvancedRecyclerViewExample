@@ -3,10 +3,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="amit"/>
+        android:layout_marginBottom="4dp"
+        android:text="My MovieFragment"
+        android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"/>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/darker_gray"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/learn_recycler_view"
