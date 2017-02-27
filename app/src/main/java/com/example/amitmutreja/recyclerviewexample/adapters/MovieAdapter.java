@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.amitmutreja.recyclerviewexample.R;
+import com.example.amitmutreja.recyclerviewexample.models.Movie;
+
+import java.util.List;
 
 /**
  * Created by
@@ -14,17 +17,45 @@ import com.example.amitmutreja.recyclerviewexample.R;
  * A {@link android.support.v7.widget.RecyclerView.Adapter} subclass for learn fragments recycler views
  */
 
-public class CustomLearnAdapter extends RecyclerView.Adapter<CustomLearnAdapter.ViewHolder> {
-    private static final String TAG = "CustomLearnAdapter";
+public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
+    private static final String TAG = "MovieAdapter";
 
-    private String[] mDataSet;
+    private List<Movie> mDataSet;
+
+
+    /**
+     * Provide a reference to the type of views that you are using (custom ViewHolder)
+     */
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        private TextView title, year, genre;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            title = (TextView) itemView.findViewById(R.id.title);
+            genre = (TextView) itemView.findViewById(R.id.genre);
+            year = (TextView) itemView.findViewById(R.id.year);
+        }
+
+        public TextView getTitle() {
+            return title;
+        }
+
+        public TextView getYear() {
+            return year;
+        }
+
+        public TextView getGenre() {
+            return genre;
+        }
+    }
+
 
     /**
      * Initialize the dataset of the Adapter.
      *
      * @param mDataSet String[] containing the data to populate views to be used by RecyclerView.
      */
-    public CustomLearnAdapter(String[] mDataSet) {
+    public MovieAdapter(List<Movie> mDataSet) {
         this.mDataSet = mDataSet;
     }
 
@@ -32,53 +63,32 @@ public class CustomLearnAdapter extends RecyclerView.Adapter<CustomLearnAdapter.
         notifyDataSetChanged();
     }
 
-    public void addData(String newString) {
-        mDataSet[3] = newString;
-        notifyItemChanged(3);
-    }
 
-    // BEGIN_INCLUDE(recyclerViewCustomViewHolder)
-    /**
-     * Provide a reference to the type of views that you are using (custom ViewHolder)
-     */
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView textView;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            textView = (TextView) itemView.findViewById(R.id.textView);
-        }
-
-        public TextView getTextView() {
-            return textView;
-        }
-    }
-    // END_INCLUDE(recyclerViewCustomViewHolder)
-
-    // BEGIN_INCLUDE(recyclerViewOnCreateViewHolder)
     // Create new views (invoked by the layout manager)
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.chapter_row_item, parent, false);
+                .inflate(R.layout.movie_list_row, parent, false);
 
         return new ViewHolder(view);
     }
-    // END_INCLUDE(recyclerViewOnCreateViewHolder)
 
-    // BEGIN_INCLUDE(recyclerViewOnBindViewHolder)
+
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
         // Get element from your dataset at this position and replace the contents of the view
         // with that element
-        viewHolder.getTextView().setText(mDataSet[position]);
+        Movie movie = mDataSet.get(position);
+        viewHolder.getTitle().setText(movie.getmTitle());
+        viewHolder.getGenre().setText(movie.getmGenre());
+        viewHolder.getYear().setText(movie.getmYear());
     }
-    // END_INCLUDE(recyclerViewOnBindViewHolder)
+
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return mDataSet.length;
+        return mDataSet.size();
     }
 }

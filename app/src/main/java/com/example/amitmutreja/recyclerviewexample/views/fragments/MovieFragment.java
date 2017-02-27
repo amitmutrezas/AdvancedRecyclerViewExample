@@ -2,6 +2,7 @@ package com.example.amitmutreja.recyclerviewexample.views.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,17 +20,18 @@ import com.example.amitmutreja.recyclerviewexample.controllers.interfaces.ILearn
  * Activities that contain this fragment must implement the
  * to handle interaction events.
  */
-public class LearnFragment extends Fragment {
+public class MovieFragment extends Fragment {
 
     //region member variables
     private ILearnController mLearnController;
     private RecyclerView mRecyclerView;
-    private CustomLearnAdapter mCustomLearnAdapter;
+    private CustomLearnAdapter mMovieAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    RecyclerView.ItemDecoration mItemDecoration;
     private String[] mDataset;
     //endregion
 
-    public LearnFragment() {
+    public MovieFragment() {
         super();
     }
 
@@ -68,12 +70,16 @@ public class LearnFragment extends Fragment {
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mCustomLearnAdapter = new CustomLearnAdapter(mDataset);
+        mMovieAdapter = new CustomLearnAdapter(mDataset);
         // Set CustomLearnAdapter as the adapter for RecyclerView.
-        mRecyclerView.setAdapter(mCustomLearnAdapter);
-        mCustomLearnAdapter.loadData();
+        mRecyclerView.setAdapter(mMovieAdapter);
 
-        mCustomLearnAdapter.addData("new_string_will_come_here_after_it_gets_notified");
+        mItemDecoration = new DividerItemDecoration(this.getContext(), DividerItemDecoration.VERTICAL);
+        mRecyclerView.addItemDecoration(mItemDecoration);
+
+        mMovieAdapter.loadData();
+
+        mMovieAdapter.addData("new_string_will_come_here_after_it_gets_notified");
         // END_INCLUDE(initializeRecyclerView)
 
         return rootView;
