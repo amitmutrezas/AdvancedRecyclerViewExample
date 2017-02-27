@@ -5,9 +5,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.amitmutreja.recyclerviewexample.R;
+import com.example.amitmutreja.recyclerviewexample.controllers.contractors.IMovieController;
+import com.example.amitmutreja.recyclerviewexample.controllers.implementors.MovieController;
 import com.example.amitmutreja.recyclerviewexample.views.fragments.FirstFrameFragment;
 import com.example.amitmutreja.recyclerviewexample.views.fragments.MovieFragment;
 
@@ -34,8 +37,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showToast(View view) {
-        Context context = getApplicationContext();
-        CharSequence text = "Hello toast!";
+        Context context = view.getContext();
+
+        IMovieController movieController = new MovieController();;
+        CharSequence text = movieController.getMovieTitleForToast(view);
         int duration = Toast.LENGTH_SHORT;
 
         Toast toast = Toast.makeText(context, text, duration);

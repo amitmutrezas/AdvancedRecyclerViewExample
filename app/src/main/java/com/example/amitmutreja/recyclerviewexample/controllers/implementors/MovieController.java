@@ -1,6 +1,11 @@
 package com.example.amitmutreja.recyclerviewexample.controllers.implementors;
 
-import com.example.amitmutreja.recyclerviewexample.controllers.interfaces.IMovieController;
+import android.content.Context;
+import android.view.View;
+import android.widget.TextView;
+
+import com.example.amitmutreja.recyclerviewexample.R;
+import com.example.amitmutreja.recyclerviewexample.controllers.contractors.IMovieController;
 import com.example.amitmutreja.recyclerviewexample.models.Movie;
 
 import java.util.ArrayList;
@@ -33,6 +38,14 @@ public class MovieController implements IMovieController {
         movieList = prepareMovieData();
         return movieList;
     }
+
+    @Override
+    public CharSequence getMovieTitleForToast(View view) {
+        TextView titleView = (TextView) view.findViewById(R.id.title);
+        CharSequence text = titleView.getText();
+        return text;
+    }
+
     //endregion
 
     //region private methods

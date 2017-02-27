@@ -1,4 +1,6 @@
-package com.example.amitmutreja.recyclerviewexample.controllers.interfaces;
+package com.example.amitmutreja.recyclerviewexample.controllers.contractors;
+
+import android.view.View;
 
 import com.example.amitmutreja.recyclerviewexample.models.Movie;
 
@@ -10,4 +12,6 @@ import java.util.List;
 
 public interface IMovieController {
     public List<Movie> getDataSet();
+
+    public CharSequence getMovieTitleForToast(View view);
 }

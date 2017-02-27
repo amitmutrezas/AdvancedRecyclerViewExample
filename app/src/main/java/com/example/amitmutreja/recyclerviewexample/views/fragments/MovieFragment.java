@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import com.example.amitmutreja.recyclerviewexample.R;
 import com.example.amitmutreja.recyclerviewexample.adapters.MovieAdapter;
 import com.example.amitmutreja.recyclerviewexample.controllers.implementors.MovieController;
-import com.example.amitmutreja.recyclerviewexample.controllers.interfaces.IMovieController;
+import com.example.amitmutreja.recyclerviewexample.controllers.contractors.IMovieController;
 import com.example.amitmutreja.recyclerviewexample.models.Movie;
 
 import java.util.List;
@@ -26,7 +26,7 @@ import java.util.List;
 public class MovieFragment extends Fragment {
 
     //region member variables
-    private IMovieController mLearnController;
+    private IMovieController mMovieController;
     private RecyclerView mRecyclerView;
     private MovieAdapter mMovieAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -47,8 +47,8 @@ public class MovieFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         // ask learnController to initialize the dataSet for you
-        mLearnController = new MovieController();
-        mDataset = mLearnController.getDataSet();
+        mMovieController = new MovieController();
+        mDataset = mMovieController.getDataSet();
     }
 
     /**
@@ -86,4 +86,5 @@ public class MovieFragment extends Fragment {
 
         return rootView;
     }
+
 }
